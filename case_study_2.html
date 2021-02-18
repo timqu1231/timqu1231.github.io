@@ -14256,13 +14256,18 @@ a.anchor-link {
     </script>
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h6 id="Since-Case_Study_2-dataset-is-clean,-therefore-I-dump-dataset-into-MySQL-Database-and-do-future-calculation.-The-answer-includes-SQL-query-command,-statistic-calculation,-and-verification-(if-necessary).">Since Case_Study_2 dataset is clean, therefore I dump dataset into MySQL Database and do future calculation. The answer includes SQL query command, statistic calculation, and verification (if necessary).<a class="anchor-link" href="#Since-Case_Study_2-dataset-is-clean,-therefore-I-dump-dataset-into-MySQL-Database-and-do-future-calculation.-The-answer-includes-SQL-query-command,-statistic-calculation,-and-verification-(if-necessary).">&#182;</a></h6>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Since</span> <span class="n">Case_Study_2</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="n">clean</span><span class="p">,</span> <span class="n">therefore</span> <span class="n">I</span> <span class="n">dump</span> <span class="n">dataset</span> <span class="n">into</span> <span class="n">MySQL</span> <span class="n">Database</span> <span class="ow">and</span> <span class="n">do</span> <span class="n">future</span> <span class="n">calculation</span><span class="o">.</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Image</span>
 </pre></div>
 
      </div>
@@ -14270,201 +14275,19 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">The</span> <span class="n">answer</span> <span class="n">includes</span> <span class="n">SQL</span> <span class="n">query</span> <span class="n">command</span><span class="p">,</span> <span class="n">statistic</span> <span class="n">calculation</span><span class="p">,</span> <span class="ow">and</span> <span class="n">verification</span> <span class="p">(</span><span class="k">if</span> <span class="n">necessary</span><span class="p">)</span><span class="o">.</span> 
-</pre></div>
-
-     </div>
 </div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Total-revenue-for-the-current-year">Total revenue for the current year<a class="anchor-link" href="#Total-revenue-for-the-current-year">&#182;</a></h1><p>SELECT <code>year</code>, SUM(net_revenue) from case_study_2 GROUP BY <code>year</code>;</p>
+
 </div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Total revenue for the current year</span>
-
-<span class="c1"># SELECT `year`, SUM(net_revenue) from case_study_2 GROUP BY `year`;</span>
-
-<span class="n">year</span>    <span class="n">SUM</span><span class="p">(</span><span class="n">net_revenue</span><span class="p">)</span>
-<span class="mi">2015</span>	<span class="mf">29036749.19</span>
-<span class="mi">2016</span>	<span class="mf">25730943.59</span>
-<span class="mi">2017</span>	<span class="mf">31417495.03</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># New Customer Revenue for 2016 - 2017</span>
-
-<span class="c1"># DELIMITER $$</span>
-<span class="c1"># DROP PROCEDURE IF EXISTS new_customer_revenue$$</span>
-<span class="c1"># CREATE PROCEDURE new_customer_revenue()</span>
-<span class="c1"># BEGIN</span>
-<span class="c1">#    DECLARE yr INT DEFAULT 2016;</span>
-<span class="c1">#    WHILE yr &lt; 2018 DO</span>
-<span class="c1">#       SELECT yr, SUM(net_revenue) FROM case_study_2 WHERE `year` = yr AND customer_email NOT IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = yr - 1);</span>
-<span class="c1">#       SET yr = yr + 1;</span>
-<span class="c1">#    END WHILE;</span>
-<span class="c1"># END$$</span>
-<span class="c1"># DELIMITER ;  </span>
-
-<span class="c1"># call new_customer_revenue(); </span>
-
-<span class="c1"># DROP PROCEDURE IF EXISTS new_customer_revenue; </span>
-
-<span class="n">yr</span>    <span class="n">SUM</span><span class="p">(</span><span class="n">net_revenue</span><span class="p">)</span>
-<span class="mi">2016</span>	<span class="mf">17206366.90</span>
-<span class="mi">2017</span>	<span class="mf">28190557.18</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Existing Customer Growth for current year</span>
-
-<span class="c1"># Equation I use: Customer Growth = Current Year Revenue - Previous Year Revenue</span>
-
-<span class="n">year</span>    <span class="n">Customer</span> <span class="n">Growth</span>
-<span class="mi">2016</span>	<span class="o">-</span><span class="mf">3305805.59</span>
-<span class="mi">2017</span>	<span class="mf">5686551.44</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Revenue lost from attrition</span>
-
-<span class="c1"># Based on my understand, it means Revenue Lost due to Customer Lost in Current year. Therefore, I need to calculate Customers&#39; Revenue, which customers are not in current revenue but in previous year. </span>
-
-<span class="n">year</span>    <span class="n">Revenue</span> <span class="n">lost</span> <span class="kn">from</span> <span class="nn">attrition</span>
-<span class="mi">2016</span>	<span class="mf">20551216.15</span>
-<span class="mi">2017</span>	<span class="mf">22529735.63</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Existing Customer Revenue Current Year</span>
-
-<span class="n">Equation</span> <span class="n">I</span> <span class="n">used</span><span class="p">:</span> <span class="n">Existing</span> <span class="n">Customer</span> <span class="n">Revenue</span> <span class="n">Current</span> <span class="n">Year</span> <span class="o">=</span> <span class="n">Total</span> <span class="n">Customer</span> <span class="n">Revenue</span> <span class="k">for</span> <span class="n">Current</span> <span class="n">Year</span> <span class="o">-</span> <span class="n">New</span> <span class="n">Customer</span> <span class="n">Revenue</span> <span class="k">for</span> <span class="n">Current</span> <span class="n">Year</span>
-
-<span class="n">year</span>    <span class="n">Existing</span> <span class="n">Customer</span> <span class="n">Revenue</span> <span class="n">Current</span> <span class="n">Year</span>
-<span class="mi">2016</span>	<span class="mf">8524576.69</span>
-<span class="mi">2017</span>	<span class="mf">3226937.85</span>
-
-<span class="c1"># To verify the Result, I use:</span>
-
-<span class="c1"># SELECT SUM(net_revenue) FROM case_study_2 WHERE `year` = 2016 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2017);</span>
-
-<span class="c1"># SELECT SUM(net_revenue) FROM case_study_2 WHERE `year` = 2017 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2016);</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Existing Customer Revenue Prior Year</span>
-
-<span class="c1"># SELECT SUM(net_revenue) FROM case_study_2 WHERE `year` = 2015 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2016 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2015));</span>
-
-<span class="c1"># SELECT SUM(net_revenue) FROM case_study_2 WHERE `year` = 2016 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2017 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2016));</span>
-
-<span class="n">year</span>    <span class="n">Existing</span> <span class="n">Customer</span> <span class="n">Revenue</span> <span class="n">Prior</span> <span class="n">Year</span>
-<span class="mi">2016</span>	<span class="mf">8485533.04</span>
-<span class="mi">2017</span>	<span class="mf">3201207.96</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Total Customers Current Year</span>
-
-<span class="c1"># SELECT `year`, COUNT(DISTINCT(customer_email)) FROM case_study_2 GROUP BY `year`;</span>
-
-<span class="n">year</span>    <span class="n">Total</span> <span class="n">Customers</span> <span class="n">Current</span> <span class="n">Year</span>
-<span class="mi">2015</span>	<span class="mi">231294</span>
-<span class="mi">2016</span>	<span class="mi">204646</span>
-<span class="mi">2017</span>	<span class="mi">249987</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Total Customers Previous Year</span>
-
-<span class="c1"># Based on my understand, it calculate total existing customers in Previous Year</span>
-
-<span class="c1"># SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE `year` = 2015 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2016);</span>
-
-<span class="c1"># SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE `year` = 2016 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2017);</span>
-
-<span class="n">year</span>    <span class="n">Total</span> <span class="n">Customers</span> <span class="n">Previous</span> <span class="n">Year</span>
-<span class="mi">2016</span>	<span class="mi">67755</span>
-<span class="mi">2017</span>	<span class="mi">25567</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;Total_revenue.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span> 
 </pre></div>
 
      </div>
@@ -14472,27 +14295,53 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="Total_revenue.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="New-Customer-Revenue-for-2016---2017">New Customer Revenue for 2016 - 2017<a class="anchor-link" href="#New-Customer-Revenue-for-2016---2017">&#182;</a></h1><p>DELIMITER \$\\$
+DROP PROCEDURE IF EXISTS new_customer_revenue\$\\$
+CREATE PROCEDURE new_customer_revenue()
+BEGIN
+   DECLARE yr INT DEFAULT 2016;
+   WHILE yr &lt; 2018 DO
+      SELECT yr, SUM(net_revenue) FROM case_study_2 WHERE <code>year</code> = yr AND customer_email NOT IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = yr - 1);
+      SET yr = yr + 1;
+   END WHILE;
+END\$\\$
+DELIMITER ;</p>
+<p>call new_customer_revenue();</p>
+<p>DROP PROCEDURE IF EXISTS new_customer_revenue;</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># New Customers</span>
-
-<span class="c1"># Based on my understand, it calculate total new customers in current year. </span>
-
-<span class="n">Equation</span> <span class="n">I</span> <span class="n">use</span><span class="p">:</span> <span class="n">New</span> <span class="n">Customer</span> <span class="o">=</span> <span class="n">Total</span> <span class="n">Customer</span> <span class="n">Current</span> <span class="n">Year</span> <span class="o">-</span> <span class="n">Total</span> <span class="n">Customer</span> <span class="n">Previous</span> <span class="n">Year</span>
-
-<span class="n">year</span>    <span class="n">New</span> <span class="n">Customers</span>
-<span class="mi">2016</span>	<span class="mi">136891</span>
-<span class="mi">2017</span>	<span class="mi">224420</span>
-
-<span class="n">To</span> <span class="n">Verify</span><span class="p">:</span>
-
-<span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="n">DISTINCT</span><span class="p">(</span><span class="n">customer_email</span><span class="p">))</span> <span class="n">FROM</span> <span class="n">case_study_2</span> <span class="n">WHERE</span> <span class="err">`</span><span class="n">year</span><span class="err">`</span> <span class="o">=</span> <span class="mi">2016</span> <span class="n">AND</span> <span class="n">customer_email</span> <span class="n">NOT</span> <span class="n">IN</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">DISTINCT</span><span class="p">(</span><span class="n">customer_email</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">case_study_2</span> <span class="n">WHERE</span> <span class="err">`</span><span class="n">year</span><span class="err">`</span> <span class="o">=</span> <span class="mi">2015</span><span class="p">);</span>
-
-<span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="n">DISTINCT</span><span class="p">(</span><span class="n">customer_email</span><span class="p">))</span> <span class="n">FROM</span> <span class="n">case_study_2</span> <span class="n">WHERE</span> <span class="err">`</span><span class="n">year</span><span class="err">`</span> <span class="o">=</span> <span class="mi">2017</span> <span class="n">AND</span> <span class="n">customer_email</span> <span class="n">NOT</span> <span class="n">IN</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">DISTINCT</span><span class="p">(</span><span class="n">customer_email</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">case_study_2</span> <span class="n">WHERE</span> <span class="err">`</span><span class="n">year</span><span class="err">`</span> <span class="o">=</span> <span class="mi">2016</span><span class="p">);</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;New_customer_revenue_1.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span> 
 </pre></div>
 
      </div>
@@ -14500,27 +14349,385 @@ a.anchor-link {
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="New_customer_revenue_1.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Existing-Customer-Growth-for-current-year">Existing Customer Growth for current year<a class="anchor-link" href="#Existing-Customer-Growth-for-current-year">&#182;</a></h1><p>Equation I use: Customer Growth = Current Year Revenue - Previous Year Revenue</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;Customer_Growth.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span> 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="Customer_Growth.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Revenue-lost-from-attrition">Revenue lost from attrition<a class="anchor-link" href="#Revenue-lost-from-attrition">&#182;</a></h1><p>Based on my understand, it means Revenue Lost due to Customer Lost in Current year. Therefore, I need to calculate Customers' Revenue, which customers are not in current revenue but in previous year.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;lost.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="lost.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Existing-Customer-Revenue-Current-Year">Existing Customer Revenue Current Year<a class="anchor-link" href="#Existing-Customer-Revenue-Current-Year">&#182;</a></h1><p>Equation I used: Existing Customer Revenue Current Year = Total Customer Revenue for Current Year - New Customer Revenue for Current Year</p>
+<p>To verify the Result, I use:</p>
+<p>SELECT SUM(net_revenue) FROM case_study_2 WHERE <code>year</code> = 2016 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2017);</p>
+<p>SELECT SUM(net_revenue) FROM case_study_2 WHERE <code>year</code> = 2017 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2016);</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;current_year_revenue_1.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="current_year_revenue_1.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Existing-Customer-Revenue-Prior-Year">Existing Customer Revenue Prior Year<a class="anchor-link" href="#Existing-Customer-Revenue-Prior-Year">&#182;</a></h1><p>SELECT SUM(net_revenue) FROM case_study_2 WHERE <code>year</code> = 2015 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2016 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2015));</p>
+<p>SELECT SUM(net_revenue) FROM case_study_2 WHERE <code>year</code> = 2016 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2017 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2016));</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;Existing_customer_revenue_prior_year.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="Existing_customer_revenue_prior_year.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Total-Customers-Current-Year">Total Customers Current Year<a class="anchor-link" href="#Total-Customers-Current-Year">&#182;</a></h1><p>SELECT <code>year</code>, COUNT(DISTINCT(customer_email)) FROM case_study_2 GROUP BY <code>year</code>;</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;Total_customer_current.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[31]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="Total_customer_current.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Total-Customers-Previous-Year">Total Customers Previous Year<a class="anchor-link" href="#Total-Customers-Previous-Year">&#182;</a></h1><p>Based on my understand, it calculate total existing customers in Previous Year</p>
+<p>SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE <code>year</code> = 2015 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2016);</p>
+<p>SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE <code>year</code> = 2016 AND customer_email IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2017);</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;Total_customer_previous_year.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[32]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="Total_customer_previous_year.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="New-Customers">New Customers<a class="anchor-link" href="#New-Customers">&#182;</a></h1><p>Based on my understand, it calculate total new customers in current year.</p>
+<p>Equation I use: New Customer = Total Customer Current Year - Total Customer Previous Year</p>
+<p>To Verify:</p>
+<p>SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE <code>year</code> = 2016 AND customer_email NOT IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2015);</p>
+<p>SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE <code>year</code> = 2017 AND customer_email NOT IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2016);</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;new.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[34]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="new.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Lost-Customers">Lost Customers<a class="anchor-link" href="#Lost-Customers">&#182;</a></h1><p>Based on my understand, it calculate total lost customers in current year</p>
+<p>Equation I use: Lost Customers = Total Customer Previous Year + New Customers Current - Total Customer Current</p>
+<p>To verify:</p>
+<p>SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE <code>year</code> = 2015 AND customer_email NOT IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2016);</p>
+<p>SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE <code>year</code> = 2016 AND customer_email NOT IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE <code>year</code> = 2017);</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;lost_customer.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[35]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<img src="lost_customer.png" width="600"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Lost Customers</span>
-
-<span class="c1"># Based on my understand, it calculate total lost customers in current year</span>
-
-<span class="n">Equation</span> <span class="n">I</span> <span class="n">use</span><span class="p">:</span> <span class="n">Lost</span> <span class="n">Customers</span> <span class="o">=</span> <span class="n">Total</span> <span class="n">Customer</span> <span class="n">Previous</span> <span class="n">Year</span> <span class="o">+</span> <span class="n">New</span> <span class="n">Customers</span> <span class="n">Current</span> <span class="o">-</span> <span class="n">Total</span> <span class="n">Customer</span> <span class="n">Current</span>
-
-<span class="n">year</span>    <span class="n">Lost</span> <span class="n">Customers</span>
-<span class="mi">2016</span>	<span class="mi">163539</span>
-<span class="mi">2017</span>	<span class="mi">179079</span>
-
-<span class="c1"># To verify:</span>
-
-<span class="c1"># SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE `year` = 2015 AND customer_email NOT IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2016);</span>
-
-<span class="c1"># SELECT COUNT(DISTINCT(customer_email)) FROM case_study_2 WHERE `year` = 2016 AND customer_email NOT IN (SELECT DISTINCT(customer_email) FROM case_study_2 WHERE `year` = 2017);</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
      </div>
